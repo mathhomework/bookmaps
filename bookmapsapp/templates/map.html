@@ -1,0 +1,15 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel= "stylesheet" href= "{% static 'css/map.css' %}" type="text/css">
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTM4fGWQ4C83C3WtC6ml7kZgmRhI0wgVk">
+    </script>
+    <script type="text/javascript" src = "{% static "js/map.js" %}"></script>
+  </head>
+  <body>
+    <div id="map-canvas"></div>
+  </body>
+</html>
