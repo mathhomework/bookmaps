@@ -10,4 +10,5 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'bookmapsapp.views.bookmap', name = 'bookmap'),
+    url(r'^get_data', 'bookmapsapp.views.get_data', name='get_data')
 )

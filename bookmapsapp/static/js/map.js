@@ -1,17 +1,7 @@
-function initialize() {
-    var mapOptions = {
-        center: new google.maps.LatLng(-34.397, 150.644),
-        zoom: 10
-    };
-    var map = new google.maps.Map(document.getElementById("map-canvas"),
-        mapOptions);
+var map;
 
-    addMarker(map);
-
-
-}
-
-function addMarker(map){
+var addMarker = function(map, lat, lng, place){
+    //test case
     var myLatLng = new google.maps.LatLng(-34.2, 150.69);
 
     var marker = new google.maps.Marker({
@@ -20,16 +10,42 @@ function addMarker(map){
         title: "map marka!"
     });
 
-    var bookLatLng = new google.maps.LatLng(-34.2, 150.39);
+    var bookLatLng = new google.maps.LatLng(lat, lng);
 
     var bookmarker = new google.maps.Marker({
         position: bookLatLng,
         draggable:true,
-        title: "Book Title"
+        title: place
     });
+    console.log(place);
+    console.log(lat);
+    console.log(lng);
     bookmarker.setMap(map);
-    addInfoWindow(map, bookmarker);
-}
+//    addInfoWindow(map, bookmarker);
+};
+
+var getData = function() {
+    $.ajax({
+        url: '/get_data/',
+        type: "GET",
+        success: function(data){
+            console.log(data);
+            for(var x = 0; x<data.length; x++){
+
+                    var lat = data[x]["fields"]["place"]["lat"];
+                    var lng = data[x]["fields"]["place"]["lng"];
+                    var place = data[x]["fields"]["place"]["name"];
+                    addMarker(map, lat, lng, place);
+            }
+        },
+        error: function(data){
+            console.log("error");
+        }
+    }).complete(function(){
+
+    });
+};
+
 
 function addInfoWindow(map, marker){
     var contentString = "<p>Howdy jack, how are you doing today?</p>" +
@@ -45,4 +61,30 @@ function addInfoWindow(map, marker){
     })
 }
 
-google.maps.event.addDomListener(window, 'load', initialize);
+
+function initialize() {
+
+    var mapOptions = {
+        center: new google.maps.LatLng(-34.397, 150.644),
+        zoom: 10
+    };
+    var map = new google.maps.Map(document.getElementById("map-canvas"),
+        mapOptions);
+
+
+    addMarker(map);
+    addMarker(map, -34.2, 150.3, "ICE CREAM");
+
+    console.log("addeddedde");
+}
+
+
+$(document).ready(function(){
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+    getData();
+    console.log("hay");
+    addMarker(map, -34.3, 150, "SETMAP");
+
+
+});
