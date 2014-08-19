@@ -3,6 +3,9 @@ $(document).ready(function(){
 var map;
 var myLon;
 var myLat;
+var infowindow;
+
+
 
 function initialize() {
     console.log("sdfjksldfksdjfkldsfdsfjkdsfjksdlfj");
@@ -84,17 +87,23 @@ var getData = function() {
 
 function addInfoWindow(map, marker, title, info, image){
     var contentString = "<h1>"+title+"</h1><p>"+info+"</p><img src ="+ image+">";
-    var infowindow = new google.maps.InfoWindow({
-        content: contentString,
-        maxWidth:400
-    });
 
-    google.maps.event.addListener(marker, 'click', function(){
+
+
+        google.maps.event.addListener(marker, 'click', function(){
+        if (infowindow){
+            console.log("EEHEHES");
+            infowindow.close();
+        }
+
+        infowindow = new google.maps.InfoWindow({
+            maxWidth:400,
+            content: contentString
+        });
         infowindow.open(map,marker);
+
     })
 }
-
-    console.log(myLat);
 
     function geosuccess(position) {
         var crd = position.coords;
