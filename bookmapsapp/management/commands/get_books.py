@@ -53,7 +53,8 @@ class Command(BaseCommand):
         for x in xrange(0, len(reformatted)):
             title = reformatted[x][0]
             author = reformatted[x][1]
-
+            print title
+            print author
             # setting fields to None and also adding if statements above is to prevent previously set variables
             # being set as fields for the next book that does not have those variables defined from the json request
             final_title = None
@@ -69,8 +70,8 @@ class Command(BaseCommand):
             try:
                 data = urllib2.urlopen('http://openlibrary.org/search.json?title={0}&author={1}'.format(title, author)).read()
                 json_data = json.loads(data)
-                print "=========TITLE====="
 
+                print "=========TITLE====="
                 final_title = json_data["docs"][0]["title_suggest"]
                 final_author = json_data["docs"][0]["author_name"][0]
 
@@ -78,12 +79,15 @@ class Command(BaseCommand):
                 current_book, book_created = Book.objects.get_or_create(title=final_title)
                 current_book.author = current_author
 
+
                 data_time = json_data["docs"][0]["time"][0]
+                print data_time
                 isbn = json_data["docs"][0]["isbn"][0]
-                time = int(re.findall(r'\d{4}', data_time)[0]) #gets first year of the returned list of times from.
-                print final_title
                 print "========ISBN=================="
                 print isbn
+                time = int(re.findall(r'\d{3,4}', data_time)[0]) #gets first year of the returned list of times from.
+                print final_title
+
                 print "========Subject:==========="
                 subjects = json_data["docs"][0]["subject"]
                 print subjects

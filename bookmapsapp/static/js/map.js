@@ -1,4 +1,37 @@
+$(document).ready(function(){
+
 var map;
+var myLon;
+var myLat;
+
+function initialize() {
+    console.log("sdfjksldfksdjfkldsfdsfjkdsfjksdlfj");
+    console.log(myLon);
+    console.log(myLat);
+    var mapOptions = {
+        center: new google.maps.LatLng(myLat, myLon),
+        // -34.397, 150.644
+        zoom: 10
+    };
+    map = new google.maps.Map(document.getElementById("map-canvas"),
+        mapOptions);
+
+    getData();
+    addMarker(map);
+    addMarker(map, -34.2, 150.3, "ICE CREAM");
+    addMarker(map, -34.3, 150, "SETMAP");
+}
+
+var geoerror = function(err){
+//
+//	$('#refresh').on("click", function(){
+//		location.reload();
+//	});
+
+};
+
+
+
 
 var addMarker = function(map, lat, lng, place){
     //test case
@@ -17,10 +50,8 @@ var addMarker = function(map, lat, lng, place){
         draggable:true,
         title: place
     });
-    console.log(place);
-    console.log(lat);
-    console.log(lng);
     bookmarker.setMap(map);
+    return bookmarker;
 //    addInfoWindow(map, bookmarker);
 };
 
@@ -31,11 +62,15 @@ var getData = function() {
         success: function(data){
             console.log(data);
             for(var x = 0; x<data.length; x++){
+                var title = data[x]["fields"]["title"];
+                var lat = data[x]["fields"]["place"]["lat"];
+                var lng = data[x]["fields"]["place"]["lng"];
+                var place = data[x]["fields"]["place"]["name"];
+                var info = data[x]["fields"]["info"];
+                var image = data[x]["fields"]["image"];
 
-                    var lat = data[x]["fields"]["place"]["lat"];
-                    var lng = data[x]["fields"]["place"]["lng"];
-                    var place = data[x]["fields"]["place"]["name"];
-                    addMarker(map, lat, lng, place);
+                var bookmarker = addMarker(map, lat, lng, place);
+                addInfoWindow(map, bookmarker, title, info, image);
             }
         },
         error: function(data){
@@ -47,10 +82,8 @@ var getData = function() {
 };
 
 
-function addInfoWindow(map, marker){
-    var contentString = "<p>Howdy jack, how are you doing today?</p>" +
-        "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed nunc leo. Nulla lacus purus, varius non ullamcorper et, hendrerit et est. Donec non dolor sed dolor pharetra condimentum vel sed turpis. Phasellus dignissim lorem tortor, ut tempor quam venenatis vitae. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam lobortis, libero ac imperdiet tristique, tellus orci tempus mi, id fermentum neque est id lectus. Vestibulum euismod felis ac nunc mattis, non lobortis massa placerat. Praesent pharetra dui vel magna tincidunt, eget eleifend ante blandit. Nunc a sapien elit. Ut laoreet volutpat fringilla. Pellentesque mi nulla, placerat eget pellentesque ac, ultricies sed ante. Curabitur interdum neque id diam sagittis, accumsan tincidunt neque aliquet.</p>";
-
+function addInfoWindow(map, marker, title, info, image){
+    var contentString = "<h1>"+title+"</h1><p>"+info+"</p><img src ="+ image+">";
     var infowindow = new google.maps.InfoWindow({
         content: contentString,
         maxWidth:400
@@ -61,30 +94,36 @@ function addInfoWindow(map, marker){
     })
 }
 
+    console.log(myLat);
 
-function initialize() {
-
-    var mapOptions = {
-        center: new google.maps.LatLng(-34.397, 150.644),
-        zoom: 10
-    };
-    var map = new google.maps.Map(document.getElementById("map-canvas"),
-        mapOptions);
-
-
-    addMarker(map);
-    addMarker(map, -34.2, 150.3, "ICE CREAM");
-
-    console.log("addeddedde");
-}
+    function geosuccess(position) {
+        var crd = position.coords;
+        console.log(crd);
+        myLon = position.coords.longitude;
+        myLat = position.coords.latitude;
+        console.log("LAT" + myLat);
+        console.log("LONG" + myLon);
+        initialize();
+    }
 
 
-$(document).ready(function(){
 
-    google.maps.event.addDomListener(window, 'load', initialize);
-    getData();
     console.log("hay");
-    addMarker(map, -34.3, 150, "SETMAP");
 
+
+    if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(geosuccess, geoerror,{
+	enableHighAccuracy: true,maximumAge:0});
+
+	}
+	else {
+		geoerror();
+        console.log("ERROR");
+	}
+
+
+
+
+//    google.maps.event.addDomListener(window, 'load', initialize);
 
 });

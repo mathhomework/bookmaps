@@ -15,3 +15,5 @@ def get_data(request):
     print books
     data = serializers.serialize('json', books, use_natural_keys=True)
     return HttpResponse(data, mimetype='application/json')
+
+

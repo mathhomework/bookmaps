@@ -44,8 +44,8 @@ class Author(models.Model):
 
 class Place(models.Model):
     name = models.CharField(max_length=150)
-    lat = models.FloatField(blank=True, null=True)
-    lng = models.FloatField(blank=True, null=True)
+    lat = models.FloatField(blank=True, null=True, unique=True)
+    lng = models.FloatField(blank=True, null=True, unique=True)
 
     def natural_key(self):
         return {
