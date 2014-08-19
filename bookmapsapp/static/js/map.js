@@ -1,17 +1,43 @@
+$(document).ready(function(){
+
+var map;
+var myLon;
+var myLat;
+var infowindow;
+
+
+
 function initialize() {
+    console.log("sdfjksldfksdjfkldsfdsfjkdsfjksdlfj");
+    console.log(myLon);
+    console.log(myLat);
     var mapOptions = {
-        center: new google.maps.LatLng(-34.397, 150.644),
+        center: new google.maps.LatLng(myLat, myLon),
+        // -34.397, 150.644
         zoom: 10
     };
-    var map = new google.maps.Map(document.getElementById("map-canvas"),
+    map = new google.maps.Map(document.getElementById("map-canvas"),
         mapOptions);
 
+    getData();
     addMarker(map);
-
-
+    addMarker(map, -34.2, 150.3, "ICE CREAM");
+    addMarker(map, -34.3, 150, "SETMAP");
 }
 
-function addMarker(map){
+var geoerror = function(err){
+//
+//	$('#refresh').on("click", function(){
+//		location.reload();
+//	});
+
+};
+
+
+
+
+var addMarker = function(map, lat, lng, place){
+    //test case
     var myLatLng = new google.maps.LatLng(-34.2, 150.69);
 
     var marker = new google.maps.Marker({
@@ -20,29 +46,93 @@ function addMarker(map){
         title: "map marka!"
     });
 
-    var bookLatLng = new google.maps.LatLng(-34.2, 150.39);
+    var bookLatLng = new google.maps.LatLng(lat, lng);
 
     var bookmarker = new google.maps.Marker({
         position: bookLatLng,
         draggable:true,
-        title: "Book Title"
+        title: place
     });
     bookmarker.setMap(map);
-    addInfoWindow(map, bookmarker);
-}
+    return bookmarker;
+//    addInfoWindow(map, bookmarker);
+};
 
-function addInfoWindow(map, marker){
-    var contentString = "<p>Howdy jack, how are you doing today?</p>" +
-        "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed nunc leo. Nulla lacus purus, varius non ullamcorper et, hendrerit et est. Donec non dolor sed dolor pharetra condimentum vel sed turpis. Phasellus dignissim lorem tortor, ut tempor quam venenatis vitae. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam lobortis, libero ac imperdiet tristique, tellus orci tempus mi, id fermentum neque est id lectus. Vestibulum euismod felis ac nunc mattis, non lobortis massa placerat. Praesent pharetra dui vel magna tincidunt, eget eleifend ante blandit. Nunc a sapien elit. Ut laoreet volutpat fringilla. Pellentesque mi nulla, placerat eget pellentesque ac, ultricies sed ante. Curabitur interdum neque id diam sagittis, accumsan tincidunt neque aliquet.</p>";
+var getData = function() {
+    $.ajax({
+        url: '/get_data/',
+        type: "GET",
+        success: function(data){
+            console.log(data);
+            for(var x = 0; x<data.length; x++){
+                var title = data[x]["fields"]["title"];
+                var lat = data[x]["fields"]["place"]["lat"];
+                var lng = data[x]["fields"]["place"]["lng"];
+                var place = data[x]["fields"]["place"]["name"];
+                var info = data[x]["fields"]["info"];
+                var image = data[x]["fields"]["image"];
 
-    var infowindow = new google.maps.InfoWindow({
-        content: contentString,
-        maxWidth:400
+                var bookmarker = addMarker(map, lat, lng, place);
+                addInfoWindow(map, bookmarker, title, info, image);
+            }
+        },
+        error: function(data){
+            console.log("error");
+        }
+    }).complete(function(){
+
     });
+};
 
-    google.maps.event.addListener(marker, 'click', function(){
+
+function addInfoWindow(map, marker, title, info, image){
+    var contentString = "<h1>"+title+"</h1><p>"+info+"</p><img src ="+ image+">";
+
+
+
+        google.maps.event.addListener(marker, 'click', function(){
+        if (infowindow){
+            console.log("EEHEHES");
+            infowindow.close();
+        }
+
+        infowindow = new google.maps.InfoWindow({
+            maxWidth:400,
+            content: contentString
+        });
         infowindow.open(map,marker);
+
     })
 }
 
-google.maps.event.addDomListener(window, 'load', initialize);
+    function geosuccess(position) {
+        var crd = position.coords;
+        console.log(crd);
+        myLon = position.coords.longitude;
+        myLat = position.coords.latitude;
+        console.log("LAT" + myLat);
+        console.log("LONG" + myLon);
+        initialize();
+    }
+
+
+
+    console.log("hay");
+
+
+    if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(geosuccess, geoerror,{
+	enableHighAccuracy: true,maximumAge:0});
+
+	}
+	else {
+		geoerror();
+        console.log("ERROR");
+	}
+
+
+
+
+//    google.maps.event.addDomListener(window, 'load', initialize);
+
+});
