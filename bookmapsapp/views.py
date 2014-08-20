@@ -66,6 +66,22 @@ def get_info_image(query, isbn):
     return {"image": image, "info": info}
 
 
+@csrf_exempt
+def add_place_time(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        print data
+        place, place_created = Place.objects.get_or_create(name=data["place"], lat=data["lat"], lng=data["lng"])
+        print place
+        book = Book.objects.get(title=data["title"])
+        print book
+        book.place = place
+        time, time_created = Time.objects.get_or_create(time=data["time"])
+        book.time.add(time)
+        book.save()
+        return HttpResponse(serializers.serialize('json', {"status": "good"}), content_type="application/json")
+
+
 def get_user_book(query):
 
     title = query.replace(" ", "+")

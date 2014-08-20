@@ -68,6 +68,7 @@ var getData = function() {
         type: "GET",
         success: function(data){
             console.log(data);
+            var marker_title_list = data[0]["fields"]["title"];
             for(var x = 0; x<data.length; x++){
                 var title = data[x]["fields"]["title"];
                 var lat = data[x]["fields"]["place"]["lat"];

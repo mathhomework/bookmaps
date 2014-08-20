@@ -26,13 +26,18 @@ $(document).ready(function(){
             data:new_data,
             dataType:"json",
             success: function(data){
+                //data returned should have an object with everything but image and info populated,
+                //everything populated, or nothing populated at all.
                 var title = data[0]["fields"]["title"];
                 var info = data[0]["fields"]["info"];
                 var image = data[0]["fields"]["image"];
                 var author = data[0]["fields"]["author"]["name"];
-                console.log(data);
+
+
+
                 console.log(data[0]["fields"]["title"]);
                 if(data[0]["fields"]["time"] && data[0]["fields"]["place"]){
+                    //cases that fall into this loop include new objs or old objs with full data.
                     var lat = data[0]["fields"]["place"]["lat"];
                     var lng = data[0]["fields"]["place"]["lng"];
                     var place = data[0]["fields"]["place"]["name"];
@@ -42,7 +47,7 @@ $(document).ready(function(){
                     map.setZoom(7);
                     $("#bookInfo").empty();
                     $("#bookInfo").append("<h5>"+title + " by " + author + "added</h5>");
-                    //*****the problem here is that marker copies can be made for the same book
+                    //*****the problem here is that marker copies can be made for an already existing book
                 }
                 else{
                 $("#bookInfo").empty();
@@ -58,14 +63,14 @@ $(document).ready(function(){
                         "Place: <input type = 'text' id= 'user_place'><button id='user_submit'>Submit</button></p>");
 
                     $("#user_submit").on("click", function(){
-                        //ifstatement here to make sure year is a number format
-                        var user_year = $("#user_time").val();
+                        //ifstatement here to make sure time is a number format
+                        var user_time = parseInt($("#user_time").val());
                         var user_place = $("#user_place").val();
                         user_place = user_place.replace(/ /g,"+");
 //                        $("#user_time").attr("value", "");
 //                        $("#user_place").attr("value", "");
                         $("#bookInfo").empty();
-                        console.log(user_year);
+                        console.log(user_time);
                         $.ajax({
                             url:"https://maps.googleapis.com/maps/api/geocode/json?address="+user_place+"&key=AIzaSyDTM4fGWQ4C83C3WtC6ml7kZgmRhI0wgVk",
                             type:"GET",
@@ -81,6 +86,29 @@ $(document).ready(function(){
                                 map.setCenter(newMarker.getPosition());
 
                                 map.setZoom(7);
+
+                                var user_geodata ={
+                                    title: title,
+                                    place: user_place,
+                                    lat: lat,
+                                    lng: lng,
+                                    time: user_time
+                                };
+
+                                var user_geodata_json = JSON.stringify(user_geodata);
+                                console.log(user_geodata_json);
+                                $.ajax({
+                                    url:/add_place_time/,
+                                    type:"POST",
+                                    data:user_geodata_json,
+                                    dataType:"json",
+                                    success: function(data){
+                                        console.log(data);
+                                    },
+                                    error: function(data){
+                                        console.log(data);
+                                    }
+                                })
 
                             },
                             error: function(geodata){
