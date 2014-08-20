@@ -1,6 +1,7 @@
+var map;
 $(document).ready(function(){
 
-var map;
+
 var myLon;
 var myLat;
 var infowindow;
@@ -8,13 +9,13 @@ var infowindow;
 
 
 function initialize() {
-    console.log("sdfjksldfksdjfkldsfdsfjkdsfjksdlfj");
-    console.log(myLon);
-    console.log(myLat);
+//    console.log("sdfjksldfksdjfkldsfdsfjkdsfjksdlfj");
+//    console.log(myLon);
+//    console.log(myLat);
     var mapOptions = {
         center: new google.maps.LatLng(myLat, myLon),
         // -34.397, 150.644
-        zoom: 10
+        zoom: 6
     };
     map = new google.maps.Map(document.getElementById("map-canvas"),
         mapOptions);
@@ -34,8 +35,10 @@ var geoerror = function(err){
 };
 
 
-
-
+var yo = function(){
+    console.log("js map works");
+};
+window.yo = yo;
 var addMarker = function(map, lat, lng, place){
     //test case
     var myLatLng = new google.maps.LatLng(-34.2, 150.69);
@@ -57,13 +60,14 @@ var addMarker = function(map, lat, lng, place){
     return bookmarker;
 //    addInfoWindow(map, bookmarker);
 };
+window.addMarker = addMarker;
 
 var getData = function() {
     $.ajax({
         url: '/get_data/',
         type: "GET",
         success: function(data){
-            console.log(data);
+//            console.log(data);
             for(var x = 0; x<data.length; x++){
                 var title = data[x]["fields"]["title"];
                 var lat = data[x]["fields"]["place"]["lat"];
@@ -86,13 +90,12 @@ var getData = function() {
 
 
 function addInfoWindow(map, marker, title, info, image){
-    var contentString = "<h1>"+title+"</h1><p>"+info+"</p><img src ="+ image+">";
+    var contentString = "<h1>"+title+"</h1><div class = 'cover'><img src ='"+ image+"'><p>"+info+"</p></div>";
 
 
 
         google.maps.event.addListener(marker, 'click', function(){
         if (infowindow){
-            console.log("EEHEHES");
             infowindow.close();
         }
 
@@ -104,20 +107,21 @@ function addInfoWindow(map, marker, title, info, image){
 
     })
 }
+window.addInfoWindow = addInfoWindow;
 
     function geosuccess(position) {
         var crd = position.coords;
-        console.log(crd);
+//        console.log(crd);
         myLon = position.coords.longitude;
         myLat = position.coords.latitude;
-        console.log("LAT" + myLat);
-        console.log("LONG" + myLon);
+//        console.log("LAT" + myLat);
+//        console.log("LONG" + myLon);
         initialize();
     }
 
 
 
-    console.log("hay");
+
 
 
     if (navigator.geolocation) {
