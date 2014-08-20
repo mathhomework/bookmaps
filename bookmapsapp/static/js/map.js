@@ -67,7 +67,7 @@ var getData = function() {
         url: '/get_data/',
         type: "GET",
         success: function(data){
-//            console.log(data);
+            console.log(data);
             for(var x = 0; x<data.length; x++){
                 var title = data[x]["fields"]["title"];
                 var lat = data[x]["fields"]["place"]["lat"];
@@ -75,9 +75,9 @@ var getData = function() {
                 var place = data[x]["fields"]["place"]["name"];
                 var info = data[x]["fields"]["info"];
                 var image = data[x]["fields"]["image"];
-
+                var author = data[x]["fields"]["author"]["name"];
                 var bookmarker = addMarker(map, lat, lng, place);
-                addInfoWindow(map, bookmarker, title, info, image);
+                addInfoWindow(map, bookmarker, title,author, info, image);
             }
         },
         error: function(data){
@@ -89,12 +89,10 @@ var getData = function() {
 };
 
 
-function addInfoWindow(map, marker, title, info, image){
-    var contentString = "<h1>"+title+"</h1><div class = 'cover'><img src ='"+ image+"'><p>"+info+"</p></div>";
+function addInfoWindow(map, marker, title, author, info, image){
+    var contentString = "<h1>"+title+"</h1><h2>"+author+"</h2><div class = 'cover'><p><img src ='"+ image+"'>"+info+"</p></div>";
 
-
-
-        google.maps.event.addListener(marker, 'click', function(){
+    google.maps.event.addListener(marker, 'click', function(){
         if (infowindow){
             infowindow.close();
         }
@@ -106,6 +104,7 @@ function addInfoWindow(map, marker, title, info, image){
         infowindow.open(map,marker);
 
     })
+
 }
 window.addInfoWindow = addInfoWindow;
 

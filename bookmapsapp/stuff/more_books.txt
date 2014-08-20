@@ -1,80 +1,82 @@
-Fifteen Thousand Useful Phrases by Grenville Kleiser (355)
-The Count of Monte Cristo, Illustrated by Alexandre Dumas (347)
-The Divine Comedy by Dante, Illustrated by Dante Alighieri (344)
-Siddhartha by Hermann Hesse (334)
-Moby Dick; Or, The Whale by Herman Melville (331)
-The Yellow Wallpaper by Charlotte Perkins Gilman (319)
-Great Expectations by Charles Dickens (299)
-Tractatus Logico-Philosophicus by Ludwig Wittgenstein (292)
-The Crime Club by William Holt-White (276)
-Decorative Art of Indian Tribes of Connecticut by Frank Gouldsmith Speck (271)
-Frankenstein; Or, The Modern Prometheus by Mary Wollstonecraft Shelley (252)
-Metamorphosis by Franz Kafka (251)
-Narrative of the Life of Frederick Douglass, an American Slave by Frederick Douglass (248)
-The Beaver, Volume 1, No. 10, July, 1921. by Hudson's Bay Company (245)
-Emma by Jane Austen (241)
-The Importance of Being Earnest: A Trivial Comedy for Serious People by Oscar Wilde (240)
-War and Peace by graf Leo Tolstoy (238)
-Gulliver's Travels by Jonathan Swift (227)
-Steam, Its Generation and Use by Babcock & Wilcox Company (217)
-The Republic by Plato (214)
-Treasure Island by Robert Louis Stevenson (211)
-The Awakening, and Selected Short Stories by Kate Chopin (210)
-Dracula by Bram Stoker (202)
-The Iliad by Homer (201)
-The Mysterious Affair at Styles by Agatha Christie (197)
-Alice Wilde: The Raftman's Daughter by Metta V. Victor (196)
-Jane Eyre: An Autobiography by Charlotte Brontë (194)
-Frederic Chopin, Vol II (of 2) by Moritz Karasowski (194)
-Beyond Good and Evil by Friedrich Wilhelm Nietzsche (188)
-Omens and Superstitions of Southern India by Edgar Thurston (187)
-Myths and Legends of Ancient Greece and Rome by E.M. Berens (183)
-Josefine Mutzenbacher by Felix Salten (183)
-Dubliners by James Joyce (179)
-A Christmas Carol in Prose; Being a Ghost Story of Christmas by Charles Dickens (175)
-The Woman in White by Wilkie Collins (175)
-The Complete Works of William Shakespeare by William Shakespeare (175)
-My Secret Life, Volumes I. to III. by Anonymous (173)
-The Jungle Book by Rudyard Kipling (172)
-Saunterings in and about London by Max Schlesinger (168)
-Forbidden Fruit by Anonymous (168)
-Wuthering Heights by Emily Brontë (166)
-Sense and Sensibility by Jane Austen (165)
-The Life and Adventures of Robinson Crusoe by Daniel Defoe (161)
-A Study in Scarlet by Arthur Conan Doyle (160)
-Novo dicionário da língua portuguesa by Cândido de Figueiredo (160)
-Essays of Michel de Montaigne — Complete by Michel de Montaigne (154)
-Moby Dick by Herman Melville (152)
-Heart of Darkness by Joseph Conrad (151)
-Walden, and On The Duty Of Civil Disobedience by Henry David Thoreau (150)
-A Princess of Mars by Edgar Rice Burroughs (150)
-Twelve Years a Slave by Solomon Northup (149)
-Prestuplenie i nakazanie. English by Fyodor Dostoyevsky (149)
-The King James Version of the Bible (148)
-Frederic Chopin, v. 1 (of 2) by Moritz Karasowski (148)
-The Chronicles of Crime or The New Newgate Calendar. v. 1/2 by Camden Pelham (146)
-Three Men in a Boat by Jerome K. Jerome (144)
-Around the World in Eighty Days by Jules Verne (143)
-The Brothers Karamazov by Fyodor Dostoyevsky (142)
-Geschichte des Prinzen Biribinker by Christoph Martin Wieland (141)
-The Works of Edgar Allan Poe — Volume 1 by Edgar Allan Poe (140)
-The Legend of Sleepy Hollow by Washington Irving (139)
-The Time Machine by H. G. Wells (135)
-The Story of My Life by Helen Keller (134)
-Anne of Green Gables by L. M. Montgomery (134)
-The Secret Adversary by Agatha Christie (129)
-Calculus Made Easy by Silvanus P. Thompson (128)
-Oliver Twist by Charles Dickens (126)
-The Wonderful Wizard of Oz by L. Frank Baum (126)
-Philosophiae Naturalis Principia Mathematica by Sir Isaac Newton (122)
-Thekla, oder die Flucht nach der Türkei. by August Schrader (121)
-Leviathan by Thomas Hobbes (120)
-The Strange Case of Dr. Jekyll and Mr. Hyde by Robert Louis Stevenson (119)
-Latin for Beginners by Benjamin L. D'Ooge (118)
-Encyclopedia of Needlework by Thérèse de Dillmont (118)
-The Notebooks of Leonardo Da Vinci — Complete by Leonardo da Vinci (118)
-The Black Man, the Father of Civilization by James Morris Webb (117)
-The Hound of the Baskervilles by Arthur Conan Doyle (117)
-The Ladies' Book of Etiquette, and Manual of Politeness by Florence Hartley (114)
-Persuasion by Jane Austen (113)
-Also sprach Zarathustra. English by Friedrich Wilhelm Nietzsche (113)
+Pride and Prejudice by Jane Austen
+Adventures of Huckleberry Finn by Mark Twain
+Alice's Adventures in Wonderland by Lewis Carroll
+Les MisÃ©rables by Victor Hugo
+The Adventures of Sherlock Holmes by Arthur Conan Doyle
+The Girl Next Door by Augusta Huiell Seaman
+The Kama Sutra of Vatsyayana by Vatsyayana
+The Romance of Lust: A Classic Victorian erotic novel by Anonymous
+Ulysses by James Joyce
+Grimms' Fairy Tales by Jacob Grimm and Wilhelm Grimm
+The Prince by NiccolÃ² Machiavelli
+The Adventures of Tom Sawyer by Mark Twain
+How to Analyze People on Sight by Elsie Lincoln Benedict and Ralph Paine Benedict
+The Picture of Dorian Gray by Oscar Wilde
+Peter Pan by J. M. Barrie
+Metamorphosis by Franz Kafka
+Siddhartha by Hermann Hesse
+The Importance of Being Earnest: A Trivial Comedy for Serious People by Oscar Wilde
+Great Expectations by Charles Dickens
+Alice Wilde: The Raftman's Daughter by Metta V. Victor
+A Tale of Two Cities by Charles Dickens
+The Strange Voyage and Adventures of Domingo Gonsales, to the World in the Moon by Francis Godwin (269)
+My Experiences as an Executioner by James Berry
+The Count of Monte Cristo, Illustrated by Alexandre Dumas
+Moby Dick; Or, The Whale by Herman Melville
+Center Rush Rowland by Ralph Henry Barbour
+Leaves of Grass by Walt Whitman
+The Snakes of Europe by G. A. Boulenger
+The Mystery of Choice by Robert W. Chambers
+Emma by Jane Austen
+Jack Harkaway in New York by Bracebridge Hemyng
+The Chronicles of Crime or The New Newgate Calendar. v. 1/2 by Camden Pelham
+The Mysterious Affair at Styles by Agatha Christie
+War and Peace by Leo Tolstoy
+The Divine Comedy by Dante, Illustrated by Dante Alighieri
+The Woman in White by Wilkie Collins
+Sense and Sensibility by Jane Austen
+Tractatus Logico-Philosophicus by Ludwig Wittgenstein
+Frankenstein; Or, The Modern Prometheus by Mary Wollstonecraft Shelley
+My Secret Life, Volumes I. to III. by Anonymous
+Wuthering Heights by Emily BrontÃ«
+The Russian Opera by Rosa Newmarch
+Gulliver's Travels by Jonathan Swift
+Dracula by Bram Stoker
+The Republic by Plato
+A Princess of Mars by Edgar Rice Burroughs
+A Christmas Carol in Prose; Being a Ghost Story of Christmas by Charles Dickens
+Three Men in a Boat by Jerome K. Jerome
+The Brothers Karamazov by Fyodor Dostoyevsky
+The Yellow Wallpaper by Charlotte Perkins Gilman
+The Complete Works of William Shakespeare by William Shakespeare
+Anne of Green Gables by L. M. Montgomery
+In Search of the Castaways by Jules Verne
+Forbidden Fruit by Anonymous
+The Works of Edgar Allan Poe â€” Volume 1 by Edgar Allan Poe
+The Chronicles of Crime or The New Newgate Calendar. v. 2/2 by Camden Pelham
+The Secret Adversary by Agatha Christie
+Jane Eyre: An Autobiography by Charlotte BrontÃ«
+Walden, and On The Duty Of Civil Disobedience by Henry David Thoreau
+A Study in Scarlet by Arthur Conan Doyle
+Beyond Good and Evil by Friedrich Wilhelm Nietzsche
+Aesop's Fables; a new translation by Aesop
+The Life and Adventures of Robinson Crusoe by Daniel Defoe
+Josefine Mutzenbacher by Felix Salten
+Dubliners by James Joyce
+Twelve Years a Slave by Solomon Northup
+Venus in Furs by Ritter von Leopold Sacher-Masoch
+Latin for Beginners by Benjamin L. D'Ooge
+The Jungle Book by Rudyard Kipling
+The Strange Case of Dr. Jekyll and Mr. Hyde by Robert Louis Stevenson
+The Iliad by Homer
+The Hound of the Baskervilles by Arthur Conan Doyle
+Treasure Island by Robert Louis Stevenson
+Around the World in Eighty Days by Jules Verne
+The Wonderful Wizard of Oz by L. Frank Baum
+The Strand Magazine - Vol. 1 - No. 6 - June 1891 by Various
+The Notebooks of Leonardo Da Vinci â€” Complete by Leonardo da Vinci
+Myths and Legends of Ancient Greece and Rome by E.M. Berens
+The Devil's Dictionary by Ambrose Bierce
+Narrative of the Life of Frederick Douglass, an American Slave by Frederick Douglass
+Heart of Darkness by Joseph Conrad
+Little Brother by Cory Doctorow
