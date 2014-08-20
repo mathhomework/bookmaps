@@ -12,7 +12,7 @@ class Command(BaseCommand):
 
     def get_place(self, search_place):
         search_place = search_place.replace(" ", "+")
-        data = urllib2.urlopen('https://maps.googleapis.com/maps/api/place/textsearch/json?query={}&key=AIzaSyDTM4fGWQ4C83C3WtC6ml7kZgmRhI0wgVk'.format(search_place)).read()
+        data = urllib2.urlopen("https://maps.googleapis.com/maps/api/geocode/json?address={}&key=AIzaSyDTM4fGWQ4C83C3WtC6ml7kZgmRhI0wgVk".format(search_place)).read()
         json_data = json.loads(data)
         lat = json_data["results"][0]["geometry"]["location"]["lat"]
         lng = json_data["results"][0]["geometry"]["location"]["lng"]
@@ -35,7 +35,7 @@ class Command(BaseCommand):
         try:
             info = json_data['items'][0]['volumeInfo']['description']
         except:
-            info = "no info"
+            info = "No info"
         return {"image": image, "info": info}
 
     def handle(self, *args, **options):
@@ -79,12 +79,21 @@ class Command(BaseCommand):
                 current_book, book_created = Book.objects.get_or_create(title=final_title)
                 current_book.author = current_author
 
-
-                data_time = json_data["docs"][0]["time"][0]
-                print data_time
                 isbn = json_data["docs"][0]["isbn"][0]
                 print "========ISBN=================="
                 print isbn
+
+                print "========INFO IMG==========="
+                info_image = self.get_info_image(title, isbn)
+                print"}}}}}}}}}}}}}}}}}}}}INFO IMG SUCCESS{{{{{{{{{{{{{{{{{{{{{{"
+                print info_image
+                info = info_image["info"]
+                image = info_image["image"]
+
+
+                data_time = json_data["docs"][0]["time"][0]
+                print data_time
+
                 time = int(re.findall(r'\d{3,4}', data_time)[0]) #gets first year of the returned list of times from.
                 print final_title
 
@@ -101,12 +110,7 @@ class Command(BaseCommand):
 
                 print lat
                 print lng
-                print "========INFO IMG==========="
-                info_image = self.get_info_image(title, isbn)
-                print"}}}}}}}}}}}}}}}}}}}}INFO IMG SUCCESS{{{{{{{{{{{{{{{{{{{{{{"
-                print info_image
-                info = info_image["info"]
-                image = info_image["image"]
+
                 print "=========================================================================================="
 
             except:

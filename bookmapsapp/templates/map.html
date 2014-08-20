@@ -4,7 +4,9 @@
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <link rel= "stylesheet" href= "{% static 'css/map.css' %}" type="text/css">
-    <script type="text/javascript" src = "http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type = "text/javascript" src = "http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type = "text/javascript" src = "{% static "js/map.js" %}"></script>
+    <script type = "text/javascript" src = "{% static 'js/sidebar.js' %}"></script>
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTM4fGWQ4C83C3WtC6ml7kZgmRhI0wgVk">
     </script>
@@ -12,9 +14,22 @@
 {#        var yogurt = {{ data }}#}
 {#        console.log(yogurt)#}
 {#    </script>#}
-    <script type="text/javascript" src = "{% static "js/map.js" %}"></script>
+
   </head>
   <body>
-    <div id="map-canvas"></div>
+      <div id="map-canvas"></div>
+      <div id="sidebar">
+          <input id = "search" type ="text">
+          <button id = "searchButton">Search</button>
+          Add Book
+          <input id = "addBook" type = "text">
+          <button id = "addBookButton">Add Book</button>
+          <div id = "bookInfo">
+
+          </div>
+      </div>
+      <div id ="timeSlider">
+
+      </div>
   </body>
 </html>
