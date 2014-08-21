@@ -47,6 +47,7 @@ function addPlaceTimeAjax(ddata){
 
 
                 console.log(data[0]["fields"]["title"]);
+                console.log(data[0]["fields"]);
                 if(data[0]["fields"]["time"] && data[0]["fields"]["place"]){
                     //cases that fall into this conditional include new objs or old objs with full data.
                     var lat = data[0]["fields"]["place"]["lat"];
@@ -56,16 +57,18 @@ function addPlaceTimeAjax(ddata){
                     addInfoWindow(map, foundMarker, title, author, info, image, place);
                     map.setCenter(foundMarker.getPosition());
                     map.setZoom(7);
+                    console.log("SKSSKSKS");
                     $("#bookInfo").empty();
-                    $("#bookInfo").append("<h5>"+title + " by " + author + "added</h5>");
+                    console.log("KSKSKSKSKS");
+                    $("#bookInfo").append("<p>"+title + " by " + author + " added!</p>");
                     //*****the problem here is that marker copies can be made for an already existing book
                 }
                 else{
                 $("#bookInfo").empty();
                 $("#bookInfo").append("<p>Did you mean "+ title +
-                    " by " + author + "?</p><button class = 'yes "+
-                    data[0]["pk"]+"'>Yes</button><button class = 'no "+
-                    data[0]["pk"]+"'>No</button>");
+                    " by " + author + "?</p><span class='yesorno'><button class = 'yes "+
+                    data[0]["pk"]+"'>Yes</button></span><span class='yesorno'><button class = 'no "+
+                    data[0]["pk"]+"'>No</button></span>");
 //                $('body').on("click", ".no", function(){
 //                    $("bookInfo").empty();
 //                    for( var x =1; x<data.length; x++){
@@ -77,8 +80,8 @@ function addPlaceTimeAjax(ddata){
 //                  console.log(data);
 //                  console.log(title);
                     $("#bookInfo").empty();
-                    $("#bookInfo").append("<p>Year: <input type = 'text' id='user_time'>" +
-                        "Place: <input type = 'text' id= 'user_place'><button id='user_submit'>Submit</button></p>");
+                    $("#bookInfo").append("<p>Year: </p> <input type = 'text' id='user_time'>" +
+                        "<p>Place: </p><input type = 'text' id= 'user_place'><button id='user_submit'>Submit</button>");
 
                     $("#user_submit").on("click", function(){
                         //ifstatement here to make sure time is a number format

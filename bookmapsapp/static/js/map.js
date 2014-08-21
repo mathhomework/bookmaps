@@ -101,27 +101,27 @@ function initialize() {
                 var newBoundBoxSWLat = newBoundBox.getSouthWest().lat();
                 var newBoundBoxSWLng = newBoundBox.getSouthWest().lng();
 
-                var newNE = new google.maps.LatLng(newBoundBoxNELat*(1/4) + myCenter.lat()*(3/4), newBoundBoxNELng*(1/4) + myCenter.lng()*(3/4));
-                var newSW = new google.maps.LatLng(newBoundBoxSWLat*(1/4) + myCenter.lat()*(3/4), newBoundBoxSWLng*(1/4) + myCenter.lng()*(3/4));
+                var newNE = new google.maps.LatLng(newBoundBoxNELat*(1/8) + myCenter.lat()*(7/8), newBoundBoxNELng*(1/8) + myCenter.lng()*(7/8));
+                var newSW = new google.maps.LatLng(newBoundBoxSWLat*(1/8) + myCenter.lat()*(7/8), newBoundBoxSWLng*(1/8) + myCenter.lng()*(7/8));
                 currentBounds = new google.maps.LatLngBounds(newSW, newNE);
 
                 var query_lat = myCenter.lat();
                 var query_lng = myCenter.lng();
                 //uncomment the below code to start exploring!
-//                $.ajax({
-//                    url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + query_lat + "," + query_lng + "&result_type=locality&key=AIzaSyDTM4fGWQ4C83C3WtC6ml7kZgmRhI0wgVk",
-//                    type: "GET",
-//                    success: function(data){
-//                        console.log(data);
-//                        var locality = data["results"][0]["address_components"][0]["long_name"];
-//                        spawnMarkers(locality, query_lat, query_lng);
-//
-//        //                    console.log(data["results"][0]["address_components"][5]["long_name"]);
-//                    },
-//                    error: function(data){
-//                        console.log(data);
-//                    }
-//                });
+                $.ajax({
+                    url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + query_lat + "," + query_lng + "&result_type=locality&key=AIzaSyDTM4fGWQ4C83C3WtC6ml7kZgmRhI0wgVk",
+                    type: "GET",
+                    success: function(data){
+                        console.log(data);
+                        var locality = data["results"][0]["address_components"][0]["long_name"];
+                        spawnMarkers(locality, query_lat, query_lng);
+
+        //                    console.log(data["results"][0]["address_components"][5]["long_name"]);
+                    },
+                    error: function(data){
+                        console.log(data);
+                    }
+                });
             }
         });
     });
@@ -201,6 +201,9 @@ var getData = function() {
 function addInfoWindow(map, marker, title, author, info, image, place){
     var contentString = "<h1>"+title+"</h1><h2>"+author+"</h2><p>Location: "+place+"</p><div class = 'cover'><p><img src ='"+ image+"'>"+info+"</p></div>";
 
+//    google.maps.event.addListener(marker, 'mouseover', function(){
+//
+//    }
     google.maps.event.addListener(marker, 'click', function(){
 //        toggleBounce(marker);
         if (infowindow){
