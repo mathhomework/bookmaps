@@ -14,6 +14,17 @@ function createBook(){
 }
 
 $(document).ready(function(){
+
+function addPlaceTimeAjax(ddata){
+    console.log("HAAAAAAY");
+     $.ajax({
+        url:"/add_place_time/",
+        type:"POST",
+        data:ddata,
+        dataType:"json"
+     });
+}
+
     $("#addBookButton").on("click", function(){
 //        yo();
         var book = $("#addBook").val();
@@ -37,7 +48,7 @@ $(document).ready(function(){
 
                 console.log(data[0]["fields"]["title"]);
                 if(data[0]["fields"]["time"] && data[0]["fields"]["place"]){
-                    //cases that fall into this loop include new objs or old objs with full data.
+                    //cases that fall into this conditional include new objs or old objs with full data.
                     var lat = data[0]["fields"]["place"]["lat"];
                     var lng = data[0]["fields"]["place"]["lng"];
                     var place = data[0]["fields"]["place"]["name"];
@@ -52,10 +63,17 @@ $(document).ready(function(){
                 else{
                 $("#bookInfo").empty();
                 $("#bookInfo").append("<p>Did you mean "+ title +
-                    " by " + author + "?</p><button class = 'result'id = '"+
-                    data[0]["pk"]+"'>Choose Book</button>");
+                    " by " + author + "?</p><button class = 'yes "+
+                    data[0]["pk"]+"'>Yes</button><button class = 'no "+
+                    data[0]["pk"]+"'>No</button>");
+//                $('body').on("click", ".no", function(){
+//                    $("bookInfo").empty();
+//                    for( var x =1; x<data.length; x++){
+//                        console.log(title);
+//                    }
+//                });
 
-                $('body').on("click", ".result", function(){ // actually result.onclick works
+                $('body').on("click", ".yes", function(){ // actually yes.onclick works
 //                  console.log(data);
 //                  console.log(title);
                     $("#bookInfo").empty();
@@ -97,18 +115,8 @@ $(document).ready(function(){
 
                                 var user_geodata_json = JSON.stringify(user_geodata);
                                 console.log(user_geodata_json);
-                                $.ajax({
-                                    url:/add_place_time/,
-                                    type:"POST",
-                                    data:user_geodata_json,
-                                    dataType:"json",
-                                    success: function(data){
-                                        console.log(data);
-                                    },
-                                    error: function(data){
-                                        console.log(data);
-                                    }
-                                })
+                                addPlaceTimeAjax(user_geodata_json);
+
 
                             },
                             error: function(geodata){
@@ -116,9 +124,9 @@ $(document).ready(function(){
                             }
                         });
 
-                    })
+                    });
 
-                })
+                });
                 }//else matching bracket
             },
             error: function(data){
