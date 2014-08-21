@@ -9,7 +9,17 @@ var myLat;
 var infowindow;
 var myCenter;
 var currentBounds;
+var previousMarker;
 
+
+function toggleBounce(marker){
+    if (marker.getAnimation() != null){
+        marker.setAnimation(null);
+    }
+    else{
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+    }
+}
 
 function spawnMarkers(place, lat, lng){
     var numSpawn = 1;
@@ -58,9 +68,6 @@ function spawnMarkers(place, lat, lng){
 }
 
 function initialize() {
-//    console.log("sdfjksldfksdjfkldsfdsfjkdsfjksdlfj");
-//    console.log(myLon);
-//    console.log(myLat);
     var mapOptions = {
         center: new google.maps.LatLng(myLat, myLon),
         // -34.397, 150.644
@@ -79,27 +86,16 @@ function initialize() {
         //returns LatLngBounds object
 
         google.maps.event.addListener(map, 'bounds_changed', function(){
-
             mapZoom = map.getZoom();
-//            console.log(currentBounds.getNorthEast());
-//            console.log(currentBounds.getSouthWest());
-//            console.log(myCenter);
             myCenter = map.getCenter();
-//            console.log(currentBounds);
 
 
             if(currentBounds.contains(myCenter)){
-//                console.log("inner");
-//                console.log(currentBounds);
                 console.log("inside");
-
-
-
             }
             else{
                 console.log("out of the box!");
                 var newBoundBox = map.getBounds();
-//                console.log(newBoundBox);
                 var newBoundBoxNELat = newBoundBox.getNorthEast().lat();  //gets top right x
                 var newBoundBoxNELng = newBoundBox.getNorthEast().lng();  //gets top right y
                 var newBoundBoxSWLat = newBoundBox.getSouthWest().lat();
@@ -111,35 +107,24 @@ function initialize() {
 
                 var query_lat = myCenter.lat();
                 var query_lng = myCenter.lng();
-                $.ajax({
-                    url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + query_lat + "," + query_lng + "&result_type=locality&key=AIzaSyDTM4fGWQ4C83C3WtC6ml7kZgmRhI0wgVk",
-                    type: "GET",
-                    success: function(data){
-                        console.log(data);
-                        var locality = data["results"][0]["address_components"][0]["long_name"];
-                        spawnMarkers(locality, query_lat, query_lng);
-
-        //                    console.log(data["results"][0]["address_components"][5]["long_name"]);
-                    },
-                    error: function(data){
-                        console.log(data);
-                    }
-                });
-//                console.log(currentBounds);
-//                console.log(myCenter);
-
-//                currentBounds = new google.maps.LatLngBounds(myCenter);
-//                console.log(currentBounds);
+                //uncomment the below code to start exploring!
+//                $.ajax({
+//                    url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + query_lat + "," + query_lng + "&result_type=locality&key=AIzaSyDTM4fGWQ4C83C3WtC6ml7kZgmRhI0wgVk",
+//                    type: "GET",
+//                    success: function(data){
+//                        console.log(data);
+//                        var locality = data["results"][0]["address_components"][0]["long_name"];
+//                        spawnMarkers(locality, query_lat, query_lng);
+//
+//        //                    console.log(data["results"][0]["address_components"][5]["long_name"]);
+//                    },
+//                    error: function(data){
+//                        console.log(data);
+//                    }
+//                });
             }
-
         });
     });
-
-
-
-
-//    console.log(currentBounds);
-
 
     getData();
     addMarker(map);
@@ -176,7 +161,8 @@ var addMarker = function(map, lat, lng, place){
     var bookmarker = new google.maps.Marker({
         position: bookLatLng,
         draggable:true,
-        title: place
+        title: place,
+        icon: "http://i.imgur.com/G1mUdnR.png"
     });
     bookmarker.setMap(map);
     return bookmarker;
@@ -216,7 +202,9 @@ function addInfoWindow(map, marker, title, author, info, image, place){
     var contentString = "<h1>"+title+"</h1><h2>"+author+"</h2><p>Location: "+place+"</p><div class = 'cover'><p><img src ='"+ image+"'>"+info+"</p></div>";
 
     google.maps.event.addListener(marker, 'click', function(){
+//        toggleBounce(marker);
         if (infowindow){
+            previousMarker.setIcon("http://i.imgur.com/DjjzLkd.png");
             infowindow.close();
         }
 
@@ -225,7 +213,8 @@ function addInfoWindow(map, marker, title, author, info, image, place){
             content: contentString
         });
         infowindow.open(map,marker);
-
+        previousMarker = marker;
+        marker.setIcon("http://i.imgur.com/TaoIHdl.png");
     })
 
 }
