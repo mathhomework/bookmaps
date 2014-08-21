@@ -2,7 +2,7 @@ var map;
 
 
 $(document).ready(function(){
-
+var mapZoom;
 
 var myLon;
 var myLat;
@@ -12,7 +12,7 @@ var currentBounds;
 
 
 function spawnMarkers(place, lat, lng){
-    var numSpawn = 4;
+    var numSpawn = 1;
     var place_query = place.replace(" ","+");
     $.ajax({
         url: "http://openlibrary.org/search.json?place="+place_query,
@@ -78,50 +78,62 @@ function initialize() {
         console.log(currentBounds);
         //returns LatLngBounds object
 
-        var query_lat = myCenter.lat();
-        var query_lng = myCenter.lng();
-        $.ajax({
-            url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + query_lat + "," + query_lng + "&result_type=locality&key=AIzaSyDTM4fGWQ4C83C3WtC6ml7kZgmRhI0wgVk",
-            type: "GET",
-            success: function(data){
-                console.log(data);
-                var locality = data["results"][0]["address_components"][0]["long_name"];
-                spawnMarkers(locality, query_lat, query_lng);
-
-//                    console.log(data["results"][0]["address_components"][5]["long_name"]);
-            },
-            error: function(data){
-                console.log(data);
-            }
-        });
-
-
         google.maps.event.addListener(map, 'bounds_changed', function(){
+
+            mapZoom = map.getZoom();
 //            console.log(currentBounds.getNorthEast());
 //            console.log(currentBounds.getSouthWest());
 //            console.log(myCenter);
             myCenter = map.getCenter();
+//            console.log(currentBounds);
 
 
             if(currentBounds.contains(myCenter)){
+//                console.log("inner");
+//                console.log(currentBounds);
                 console.log("inside");
 
 
 
             }
             else{
-//                console.log("out of the box!");
+                console.log("out of the box!");
+                var newBoundBox = map.getBounds();
+//                console.log(newBoundBox);
+                var newBoundBoxNELat = newBoundBox.getNorthEast().lat();  //gets top right x
+                var newBoundBoxNELng = newBoundBox.getNorthEast().lng();  //gets top right y
+                var newBoundBoxSWLat = newBoundBox.getSouthWest().lat();
+                var newBoundBoxSWLng = newBoundBox.getSouthWest().lng();
+
+                var newNE = new google.maps.LatLng(newBoundBoxNELat*(1/4) + myCenter.lat()*(3/4), newBoundBoxNELng*(1/4) + myCenter.lng()*(3/4));
+                var newSW = new google.maps.LatLng(newBoundBoxSWLat*(1/4) + myCenter.lat()*(3/4), newBoundBoxSWLng*(1/4) + myCenter.lng()*(3/4));
+                currentBounds = new google.maps.LatLngBounds(newSW, newNE);
+
+                var query_lat = myCenter.lat();
+                var query_lng = myCenter.lng();
+                $.ajax({
+                    url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + query_lat + "," + query_lng + "&result_type=locality&key=AIzaSyDTM4fGWQ4C83C3WtC6ml7kZgmRhI0wgVk",
+                    type: "GET",
+                    success: function(data){
+                        console.log(data);
+                        var locality = data["results"][0]["address_components"][0]["long_name"];
+                        spawnMarkers(locality, query_lat, query_lng);
+
+        //                    console.log(data["results"][0]["address_components"][5]["long_name"]);
+                    },
+                    error: function(data){
+                        console.log(data);
+                    }
+                });
+//                console.log(currentBounds);
+//                console.log(myCenter);
+
 //                currentBounds = new google.maps.LatLngBounds(myCenter);
 //                console.log(currentBounds);
             }
 
         });
     });
-
-
-
-
-
 
 
 
