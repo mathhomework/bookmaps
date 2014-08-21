@@ -9,8 +9,53 @@ var myLat;
 var infowindow;
 var myCenter;
 var currentBounds;
-var bounds;
 
+
+function spawnMarkers(place, lat, lng){
+    var numSpawn = 4;
+    var place_query = place.replace(" ","+");
+    $.ajax({
+        url: "http://openlibrary.org/search.json?place="+place_query,
+        type:"GET",
+        dataType:"json",
+        success: function(data){
+            for (var x =0; x<numSpawn;x++){
+                (function(x){
+                var data_title = data["docs"][x]["title_suggest"];
+                var data_author = data["docs"][x]["author_name"][0];
+                var data_isbn = data["docs"][x]["isbn"][0];
+
+                var info_image_query = (data_title).replace(" ", "+");
+                console.log(info_image_query);
+                $.ajax({
+                    url:"https://www.googleapis.com/books/v1/volumes?q="+info_image_query+"&isbn="+data_isbn+"&key=AIzaSyDTM4fGWQ4C83C3WtC6ml7kZgmRhI0wgVk",
+                    type: "GET",
+                    dataType: "json",
+                    success: function(googledata){
+
+                        var selfLink = googledata["items"][0]["selfLink"];
+                        var image = googledata["items"][0]["volumeInfo"]["imageLinks"]["thumbnail"];
+                        var info = googledata['items'][0]['volumeInfo']['description'];
+                        if (info == undefined ){
+                            info = "No Info";
+                            }
+                        console.log(info);
+                        var spawnedMarker = addMarker(map, lat, lng, place);
+                        addInfoWindow(map, spawnedMarker, data_title, data_author, info, image, place);
+                    },
+                    error: function(googledata){
+                        console.log("google image and info query FAIL!");
+                    }
+                });
+                })(x);
+            }
+
+        },
+        error: function(data){
+            console.log("spawnMarker FAILURES!!!!!");
+        }
+    });
+}
 
 function initialize() {
 //    console.log("sdfjksldfksdjfkldsfdsfjkdsfjksdlfj");
@@ -19,7 +64,7 @@ function initialize() {
     var mapOptions = {
         center: new google.maps.LatLng(myLat, myLon),
         // -34.397, 150.644
-        zoom: 6
+        zoom: 11
     };
     map = new google.maps.Map(document.getElementById("map-canvas"),
         mapOptions);
@@ -34,25 +79,27 @@ function initialize() {
         //returns LatLngBounds object
 
         var query_lat = myCenter.lat();
-            var query_lng = myCenter.lng();
-            $.ajax({
-                url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + query_lat + "," + query_lng + "&location_type=ROOFTOP&result_type=street_address&key=AIzaSyDTM4fGWQ4C83C3WtC6ml7kZgmRhI0wgVk",
-                type: "GET",
-                success: function(data){
-                    console.log(data);
-                    console.log(data["results"][0]["address_components"][3]["long_name"]);
-                    console.log(data["results"][0]["address_components"][5]["long_name"]);
-                },
-                error: function(data){
-                    console.log(data);
-                }
-            });
+        var query_lng = myCenter.lng();
+        $.ajax({
+            url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + query_lat + "," + query_lng + "&result_type=locality&key=AIzaSyDTM4fGWQ4C83C3WtC6ml7kZgmRhI0wgVk",
+            type: "GET",
+            success: function(data){
+                console.log(data);
+                var locality = data["results"][0]["address_components"][0]["long_name"];
+                spawnMarkers(locality, query_lat, query_lng);
+
+//                    console.log(data["results"][0]["address_components"][5]["long_name"]);
+            },
+            error: function(data){
+                console.log(data);
+            }
+        });
 
 
         google.maps.event.addListener(map, 'bounds_changed', function(){
-            console.log(currentBounds.getNorthEast());
-            console.log(currentBounds.getSouthWest());
-            console.log(myCenter);
+//            console.log(currentBounds.getNorthEast());
+//            console.log(currentBounds.getSouthWest());
+//            console.log(myCenter);
             myCenter = map.getCenter();
 
 
@@ -63,9 +110,9 @@ function initialize() {
 
             }
             else{
-                console.log("out of the box!");
+//                console.log("out of the box!");
 //                currentBounds = new google.maps.LatLngBounds(myCenter);
-                console.log(currentBounds);
+//                console.log(currentBounds);
             }
 
         });
@@ -141,7 +188,7 @@ var getData = function() {
                 var image = data[x]["fields"]["image"];
                 var author = data[x]["fields"]["author"]["name"];
                 var bookmarker = addMarker(map, lat, lng, place);
-                addInfoWindow(map, bookmarker, title,author, info, image);
+                addInfoWindow(map, bookmarker, title,author, info, image, place);
             }
         },
         error: function(data){
@@ -153,8 +200,8 @@ var getData = function() {
 };
 
 
-function addInfoWindow(map, marker, title, author, info, image){
-    var contentString = "<h1>"+title+"</h1><h2>"+author+"</h2><div class = 'cover'><p><img src ='"+ image+"'>"+info+"</p></div>";
+function addInfoWindow(map, marker, title, author, info, image, place){
+    var contentString = "<h1>"+title+"</h1><h2>"+author+"</h2><p>Location: "+place+"</p><div class = 'cover'><p><img src ='"+ image+"'>"+info+"</p></div>";
 
     google.maps.event.addListener(marker, 'click', function(){
         if (infowindow){

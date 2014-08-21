@@ -1,17 +1,17 @@
-function createBook(){
-    $.ajax({
-        url:/user_create_book/,
-        type:"POST",
-        data: user_data,
-        dataType:"json",
-        success:function(data){
-
-        },
-        error: function(data){
-
-        }
-    })
-}
+//function createBook(){
+//    $.ajax({
+//        url:/user_create_book/,
+//        type:"POST",
+//        data: user_data,
+//        dataType:"json",
+//        success:function(data){
+//
+//        },
+//        error: function(data){
+//
+//        }
+//    })
+//}
 
 $(document).ready(function(){
 
@@ -53,7 +53,7 @@ function addPlaceTimeAjax(ddata){
                     var lng = data[0]["fields"]["place"]["lng"];
                     var place = data[0]["fields"]["place"]["name"];
                     var foundMarker = addMarker(map, lat, lng, place);
-                    addInfoWindow(map, foundMarker, title, author, info, image);
+                    addInfoWindow(map, foundMarker, title, author, info, image, place);
                     map.setCenter(foundMarker.getPosition());
                     map.setZoom(7);
                     $("#bookInfo").empty();
@@ -100,7 +100,7 @@ function addPlaceTimeAjax(ddata){
                                 console.log(lng);
                                 console.log(user_place);
                                 var newMarker = addMarker(map, lat, lng, user_place);
-                                addInfoWindow(map, newMarker, title, author, info, image);
+                                addInfoWindow(map, newMarker, title, author, info, image, user_place);
                                 map.setCenter(newMarker.getPosition());
 
                                 map.setZoom(7);
