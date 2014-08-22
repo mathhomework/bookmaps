@@ -9,6 +9,7 @@ from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from bookmapsapp.models import *
 
+# Lots of printing/logging to clean up
 
 def bookmap(request):
     return render(request, "map.html")
@@ -21,6 +22,7 @@ def get_data(request):
 
 @csrf_exempt
 def add_book(request):
+    # Is this supposed to actually save the book in the database?
     if request.method == "POST":
         data = json.loads(request.body)
         title_query = data["book"]
@@ -32,7 +34,7 @@ def add_book(request):
         new_data = serializers.serialize('json', books, use_natural_keys = True)
         return HttpResponse(new_data, content_type='application/json')
 
-
+# Good job splitting these functions out into reusable bits - would be easier to test
 def get_place(search_place):
     search_place = search_place.replace(" ", "+")
     data = urllib2.urlopen("https://maps.googleapis.com/maps/api/geocode/json?address={}&key=AIzaSyDTM4fGWQ4C83C3WtC6ml7kZgmRhI0wgVk".format(search_place)).read()
@@ -147,6 +149,8 @@ def get_user_book(query):
         #need to write addition part to uppercase all words that are not "of and the"
         #for example, "The sun also rises"is returned instead of "The Sun Also Rises"
 
+    # We talked about this, but you should be able to clean these up and reduce the amount of lines of code
+    # The try/excepts seem unnecessary
     if time is not None:
         try:
             time
