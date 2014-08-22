@@ -1,6 +1,6 @@
 var map;
 
-
+// Need to run a code reformat on this page to clean it up, but generally everything is looking good and pretty straightforward
 $(document).ready(function(){
 var mapZoom;
 
