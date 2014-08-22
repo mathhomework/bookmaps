@@ -19,9 +19,6 @@ def get_data(request):
     data = serializers.serialize('json', books, use_natural_keys=True)
     return HttpResponse(data, content_type='application/json')
 
-# def get_book_from_apis(request, query):
-#
-
 @csrf_exempt
 def add_book(request):
     if request.method == "POST":
@@ -66,10 +63,25 @@ def get_info_image(query, isbn):
     return {"image": image, "info": info}
 
 
+@csrf_exempt
+def add_place_time(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        print data
+        place, place_created = Place.objects.get_or_create(name=data["place"], lat=data["lat"], lng=data["lng"])
+        print place
+        book = Book.objects.get(title=data["title"])
+        print book
+        book.place = place
+        time, time_created = Time.objects.get_or_create(time=data["time"])
+        book.time.add(time)
+        book.save()
+        return HttpResponse(status=201)
+
+
 def get_user_book(query):
 
     title = query.replace(" ", "+")
-
 
     # setting fields to None and also adding if statements above is to prevent previously set variables
     # being set as fields for the next book that does not have those variables defined from the json request
