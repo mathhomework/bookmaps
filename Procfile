@@ -1,0 +1,1 @@
+web: gunicorn bookmaps.wsgi --log-file -
