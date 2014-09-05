@@ -1,0 +1,115 @@
+html {
+    height: 100%
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Shadows Into Light', cursive;
+}
+
+input {
+    /*line-height: 1.1em;*/
+    font-size:30px;
+    font-family: 'Shadows Into Light', cursive;
+}
+#logo{
+    display:inline;
+    font-size:65px;
+    padding-left:13px;
+    /*vertical-align: top;*/
+    margin:auto;
+}
+
+#map-canvas {
+
+    height:84%;
+    width: 100%;
+    bottom:0;
+    position:absolute;
+}
+
+.cover img{
+    display:inline;
+    float:left;
+    margin-right: 15px;
+    margin-bottom: 15px;
+
+}
+
+.cover p{
+    display:inline;
+}
+
+#addBook{
+    padding-left:5px;
+
+    /*padding-bottom: 5px;*/
+}
+
+.addBookSpan{
+    padding-left:20px;
+    top:0;
+    position:absolute;
+    padding-top:24px;
+}
+
+
+
+#addBookInputSpan{
+
+}
+
+#sidebar{
+    top:0;
+
+    height:15.5%;
+    position:absolute;
+    width:100%;
+    /*background-color:pink;*/
+    background-image: url(http://subtlepatterns.com/patterns/sativa.png);
+    /*right:0;*/
+    border-bottom: 5px lightsalmon solid;
+}
+
+#sidebar p{
+    font-size:36px;
+    display:inline;
+}
+
+#bookInfo{
+    left:0;
+    position:absolute;
+    padding-left:770px;
+    padding-top:24px;
+}
+
+button{
+    /*height: 4em;*/
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 180%;
+}
+
+#user_time, #user_place{
+    padding-left:15px;
+}
+
+.yesorno{
+    padding-left:15px;
+}
+
+.no button{
+    padding-right:15px;
+}
+
+/*#sidebar:before {*/
+   /*content: " ";*/
+   /*position: absolute;*/
+   /*z-index: -1;*/
+   /*top: 5px;*/
+   /*left: 5px;*/
+   /*right: 5px;*/
+   /*bottom: 5px;*/
+   /*border: 5px solid #ffea00;*/
+/*}*/

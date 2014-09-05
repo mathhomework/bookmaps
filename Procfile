@@ -1,1 +1,1 @@
-web: gunicorn bookmaps.wsgi --log-file -
+web: gunicorn hellodjango.wsgi --log-file -
