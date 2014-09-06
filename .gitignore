@@ -3,7 +3,11 @@
 local_settings.py
 staticfiles
 venv
+<<<<<<< HEAD
 .idea/workspace.xml
+=======
+workspace.xml
+>>>>>>> 5b9be1dda275eead603e56168b39ce2b90c4f43f
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
