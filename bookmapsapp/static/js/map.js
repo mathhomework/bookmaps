@@ -3,7 +3,7 @@ var map;
 
 $(document).ready(function(){
 var mapZoom;
-
+var boxSize = 1/4;
 var myLon;
 var myLat;
 var infowindow;
@@ -101,8 +101,8 @@ function initialize() {
                 var newBoundBoxSWLat = newBoundBox.getSouthWest().lat();
                 var newBoundBoxSWLng = newBoundBox.getSouthWest().lng();
 
-                var newNE = new google.maps.LatLng(newBoundBoxNELat*(1/8) + myCenter.lat()*(7/8), newBoundBoxNELng*(1/8) + myCenter.lng()*(7/8));
-                var newSW = new google.maps.LatLng(newBoundBoxSWLat*(1/8) + myCenter.lat()*(7/8), newBoundBoxSWLng*(1/8) + myCenter.lng()*(7/8));
+                var newNE = new google.maps.LatLng(newBoundBoxNELat*boxSize + myCenter.lat()*(1-boxSize), newBoundBoxNELng*boxSize + myCenter.lng()*(1-boxSize));
+                var newSW = new google.maps.LatLng(newBoundBoxSWLat*boxSize + myCenter.lat()*(1-boxSize), newBoundBoxSWLng*boxSize + myCenter.lng()*(1-boxSize));
                 currentBounds = new google.maps.LatLngBounds(newSW, newNE);
 
                 var query_lat = myCenter.lat();
