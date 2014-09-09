@@ -1,3 +1,12 @@
+/*Things to Fix
+hold all of the responses for an area into a list to be chosen again
+bootstrap interface
+about section should roll down when an about button is clicked
+fix add book.
+*/
+
+
+
 var map;
 
 
@@ -148,13 +157,13 @@ var yo = function(){
 window.yo = yo;
 var addMarker = function(map, lat, lng, place){
     //test case
-    var myLatLng = new google.maps.LatLng(-34.2, 150.69);
-
-    var marker = new google.maps.Marker({
-        position:myLatLng,
-        map:map,
-        title: "map marka!"
-    });
+//    var myLatLng = new google.maps.LatLng(-34.2, 150.69);
+//
+//    var marker = new google.maps.Marker({
+//        position:myLatLng,
+//        map:map,
+//        title: "map marka!"
+//    });
 
     var bookLatLng = new google.maps.LatLng(lat, lng);
 
@@ -231,8 +240,6 @@ window.addInfoWindow = addInfoWindow;
 //        console.log("LAT" + myLat);
 //        console.log("LONG" + myLon);
         initialize();
-
-
     }
 
 
