@@ -113,3 +113,54 @@ button{
    /*bottom: 5px;*/
    /*border: 5px solid #ffea00;*/
 /*}*/
+
+
+/* Large desktop */
+@media (min-width: 979px) {
+    #logo{
+        font-size:65px;
+    }
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+    #logo{
+        font-size:40px;
+    }
+    #sidebar p{
+        font-size:24px;
+        display:inline;
+    }
+    .addBookSpan{
+        padding-left:20px;
+        top:0;
+        position:absolute;
+        padding-top:18px;
+    }
+    input {
+    /*line-height: 1.1em;*/
+        font-size:18px;
+        font-family: 'Shadows Into Light', cursive;
+    }
+    button{
+        font-size: 110%;
+    }
+}
+
+/* Landscape phones and down */
+@media (max-width: 530px) {
+    #logo{
+
+        font-size:65px;
+    }
+
+    .addBookSpan {
+        display: none;
+    }
+}
+
