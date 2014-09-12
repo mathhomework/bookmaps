@@ -19,6 +19,7 @@ var infowindow;
 var myCenter;
 var currentBounds;
 var previousMarker;
+var sessionData = {};
 
 
 function toggleBounce(marker){
@@ -38,11 +39,13 @@ function spawnMarkers(place, lat, lng){
         type:"GET",
         dataType:"json",
         success: function(data){
+            storeSessionData(data, place);
             for (var x =0; x<numSpawn;x++){
                 (function(x){
-                var data_title = data["docs"][x]["title_suggest"];
-                var data_author = data["docs"][x]["author_name"][0];
-                var data_isbn = data["docs"][x]["isbn"][0];
+
+                var data_title = sessionData[place]["docs"][x]["title_suggest"]; //data["docs"]stuff will be replaced by the sessionData
+                var data_author = sessionData[place]["docs"][x]["author_name"][0];
+                var data_isbn = sessionData[place]["docs"][x]["isbn"][0];
 
                 var info_image_query = (data_title).replace(" ", "+");
                 console.log(info_image_query);
@@ -59,8 +62,12 @@ function spawnMarkers(place, lat, lng){
                             info = "No Info";
                             }
                         console.log(info);
+
                         var spawnedMarker = addMarker(map, lat, lng, place);
                         addInfoWindow(map, spawnedMarker, data_title, data_author, info, image, place);
+//                        sessionData[place].splice(0,numSpawn);
+                        console.log(sessionData[place]);
+//                        console.log(sessionData);
                     },
                     error: function(googledata){
                         console.log("google image and info query FAIL!");
@@ -123,6 +130,7 @@ function initialize() {
                     success: function(data){
                         console.log(data);
                         var locality = data["results"][0]["address_components"][0]["long_name"];
+
                         spawnMarkers(locality, query_lat, query_lng);
 
         //                    console.log(data["results"][0]["address_components"][5]["long_name"]);
@@ -147,6 +155,17 @@ var geoerror = function(err){
 //		location.reload();
 //	});
 
+};
+
+var storeSessionData =function (data, place){
+    if (place in sessionData){
+    }
+    else{
+        sessionData[place] = data;
+    }
+    console.log(data["docs"]);
+
+    console.log(sessionData);
 };
 
 
@@ -184,7 +203,7 @@ var getData = function() {
         url: '/get_data/',
         type: "GET",
         success: function(data){
-            console.log(data);
+//            console.log(data);
             var marker_title_list = data[0]["fields"]["title"];
             for(var x = 0; x<data.length; x++){
                 var title = data[x]["fields"]["title"];
