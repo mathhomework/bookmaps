@@ -65,9 +65,9 @@ function spawnMarkers(place, lat, lng){
 
                         var spawnedMarker = addMarker(map, lat, lng, place);
                         addInfoWindow(map, spawnedMarker, data_title, data_author, info, image, place);
-//                        sessionData[place].splice(0,numSpawn);
-                        console.log(sessionData[place]);
-//                        console.log(sessionData);
+                        sessionData[place]["docs"].splice(0,numSpawn);
+//                        console.log(sessionData[place]);
+                        console.log(sessionData);
                     },
                     error: function(googledata){
                         console.log("google image and info query FAIL!");
@@ -163,9 +163,9 @@ var storeSessionData =function (data, place){
     else{
         sessionData[place] = data;
     }
-    console.log(data["docs"]);
+//    console.log(data["docs"]);
 
-    console.log(sessionData);
+//    console.log(sessionData);
 };
 
 
