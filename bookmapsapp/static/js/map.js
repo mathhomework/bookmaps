@@ -145,8 +145,8 @@ function initialize() {
 
     getData();
     addMarker(map);
-    addMarker(map, -34.2, 150.3, "ICE CREAM");
-    addMarker(map, -34.3, 150, "SETMAP");
+//    addMarker(map, -34.2, 150.3, "ICE CREAM");
+//    addMarker(map, -34.3, 150, "SETMAP");
 }
 
 var geoerror = function(err){
