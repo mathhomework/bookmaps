@@ -1,0 +1,13 @@
+body {
+  color: #333; }
+
+.navbar-default {
+  background-color: #d9d; }
+
+#map-canvas {
+  height: 93%;
+  width: 100%;
+  bottom: 0;
+  position: absolute; }
+
+/*# sourceMappingURL=test.css.map */

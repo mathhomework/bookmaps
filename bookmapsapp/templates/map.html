@@ -3,39 +3,53 @@
 <html>
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
-    <link rel= "stylesheet" href= "{% static 'css/map.css' %}" type="text/css">
-    <script type = "text/javascript" src = "http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+{#    <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>#}
+{#    <link rel= "stylesheet" href= "{% static 'css/map.css' %}" type="text/css">#}
+    <script src = "http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <link rel= "stylesheet" href= "{% static 'bootstrap-3.2.0-dist/css/bootstrap.css' %}" type="text/css">
+    <script src= "{% static 'bootstrap-3.2.0-dist/js/bootstrap.js' %}"></script>
     <script type = "text/javascript" src = "{% static "js/map.js" %}"></script>
-    <script type = "text/javascript" src = "{% static 'js/sidebar.js' %}"></script>
+{#    <script type = "text/javascript" src = "{% static 'js/sidebar.js' %}"></script>#}
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTM4fGWQ4C83C3WtC6ml7kZgmRhI0wgVk">
     </script>
-{#    <script type = "text/javascript">#}
-{#        var yogurt = {{ data }}#}
-{#        console.log(yogurt)#}
-{#    </script>#}
+    <link rel="stylesheet" type="text/css" href = "{% static 'css/test.css' %}">
+
 
   </head>
   <body>
+      <div class="navbar navbar-default navbar-fixed-top">
+          <div class="container">
+              <div class = "navbar-header">
+              <a href="#" class = "navbar-brand">BookMaps</a>
+              <button class = "navbar-toggle" data-toggle="collapse" data-target = ".navHeaderCollapse">Junk</button>
+              </div>
+              <div class = "collapse navbar-collapse navHeaderCollapse">
+                  <ul class = "nav navbar-nav navbar-left">
+                    <li><a href = '#'>About</a></li>
+                    <li><a href = '#'>Contact</a></li>
+                    <li><input type="text"><button class="btn">Submit</button></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+      <div id="sidebar" >
 
-      <div id="sidebar">
-
-          <h1 id = "logo">BOOK Maps</h1>
+{#          <h1 id = "logo">BOOK Maps</h1>#}
 {#          <input id = "search" type ="text">#}
 {#          <button id = "searchButton">Search</button>#}
           <span class = "addBookSpan">
-              <p style = "font-size:22px;">Book Maps is an ongoing project made by <a href = "www.github.com/mathhomework">Andrew Shum</a>
-                  for discovering books based on the setting in which they took place. Navigate around the map, and books will start popping up! Have fun! </p>
-              <br>
-              <p style = "font-size:22px;">Questions? Comments? <a href="mailto:andrewshum@alumni.ucsd.edu?Subject=Book%20Maps%20Question" target="_top">Send Andrew an email</a></p>
+{#              <p style = "font-size:22px;">Book Maps is an ongoing project made by <a href = "www.github.com/mathhomework">Andrew Shum</a>#}
+{#                  for discovering books based on the setting in which they took place. Navigate around the map, and books will start popping up! Have fun! </p>#}
+{#              <br>#}
+{#              <p style = "font-size:22px;">Questions? Comments? <a href="mailto:andrewshum@alumni.ucsd.edu?Subject=Book%20Maps%20Question" target="_top">Send Andrew an email</a></p>#}
 {#The following should be uncommented and fixed when you want to implement add book features#}
 {#              <p>Add Book</p>#}
 
-{#              <span id = "addBookInputSpan">#}
-{#                  <input size = 12 id = "addBook" class = "inputAB" type = "text">#}
-{#                  <button id = "addBookButton">ADD</button>#}
-{#              </span>#}
+              <span id = "addBookInputSpan">
+                  <input size = 12 id = "addBook" class = "inputAB" type = "text">
+                  <button id = "addBookButton" class="btn">ADD</button>
+              </span>
               <span id = "bookInfo">
               </span>
 
@@ -43,11 +57,7 @@
 
 
       </div>
-      <div id="map-canvas"></div>
-
-
-      <div id ="timeSlider">
-
-      </div>
+{#      <div id = "map-canvas"></div>#}
+      <div id = "timeSlider"></div>
   </body>
 </html>

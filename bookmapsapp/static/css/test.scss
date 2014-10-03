@@ -1,0 +1,20 @@
+//$font-stack: Arial, sans-serif;
+$primary-color:#333;
+$pink: #d9d;
+
+body{
+  color: $primary-color;
+}
+
+
+
+.navbar-default{
+  background-color: $pink;
+}
+
+#map-canvas {
+    height:93%;
+    width: 100%;
+    bottom:0;
+    position:absolute;
+}
