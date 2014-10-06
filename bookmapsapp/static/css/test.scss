@@ -1,6 +1,6 @@
 //$font-stack: Arial, sans-serif;
 $primary-color:#333;
-$pink: #d9d;
+$navbar-color: #3e3;
 
 body{
   color: $primary-color;
@@ -9,7 +9,7 @@ body{
 
 
 .navbar-default{
-  background-color: $pink;
+  background-color: $navbar-color;
 }
 
 #map-canvas {

@@ -26,11 +26,11 @@ function addPlaceTimeAjax(ddata){
 }
 
     $("#addBookButton").on("click", function(){
-//        yo();
         var book = $("#addBook").val();
         $('#addBook').attr("value", "");
         var data = {book:book};
         var new_data = JSON.stringify(data);
+        console.log(new_data);
         $.ajax({
             url:/add_book/,
             type:"POST",
@@ -65,10 +65,14 @@ function addPlaceTimeAjax(ddata){
                 }
                 else{
                 $("#bookInfo").empty();
+
                 $("#bookInfo").append("<p>Did you mean "+ title +
                     " by " + author + "?</p><span class='yesorno'><button class = 'yes "+
                     data[0]["pk"]+"'>Yes</button></span><span class='yesorno'><button class = 'no "+
                     data[0]["pk"]+"'>No</button></span>");
+                    //below (only 1 line) is shortenedTEST but commented!
+//                $("#bookInfo").append("Did you mean");
+
 //                $('body').on("click", ".no", function(){
 //                    $("bookInfo").empty();
 //                    for( var x =1; x<data.length; x++){
@@ -119,6 +123,7 @@ function addPlaceTimeAjax(ddata){
                                 var user_geodata_json = JSON.stringify(user_geodata);
                                 console.log(user_geodata_json);
                                 addPlaceTimeAjax(user_geodata_json);
+                                console.log("WHOA WHOA WHOA");
 
 
                             },
