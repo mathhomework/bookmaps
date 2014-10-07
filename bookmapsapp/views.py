@@ -19,17 +19,19 @@ def get_data(request):
     data = serializers.serialize('json', books, use_natural_keys=True)
     return HttpResponse(data, content_type='application/json')
 
+
 @csrf_exempt
 def add_book(request):
     if request.method == "POST":
         data = json.loads(request.body)
         title_query = data["book"]
-        print
         books = Book.objects.filter(title__icontains=title_query)
+        print books
         if not books:
             books = [get_user_book(title_query)]
         print books
-        new_data = serializers.serialize('json', books, use_natural_keys = True)
+        new_data = serializers.serialize('json', books, use_natural_keys=True)
+        print "ADD_BOOK IS DOING SOMETHING HERE"
         return HttpResponse(new_data, content_type='application/json')
 
 

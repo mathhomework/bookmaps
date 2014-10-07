@@ -28,15 +28,17 @@ function addPlaceTimeAjax(ddata){
     $("#addBookButton").on("click", function(){
         var book = $("#addBook").val();
         $('#addBook').attr("value", "");
-        var data = {book:book};
-        var new_data = JSON.stringify(data);
+        var new_data = JSON.stringify({'book':book});
+        console.log("WHOAAAAAAA");
         console.log(new_data);
         $.ajax({
-            url:/add_book/,
+            url:"/add_book/",
             type:"POST",
             data:new_data,
             dataType:"json",
+            timeout: 20000,
             success: function(data){
+                console.log("ADD_BOOK SUCCESS FUNCTION BEGINS");
                 //data returned should have an object with everything but image and info populated,
                 //everything populated, or nothing populated at all.
                 var title = data[0]["fields"]["title"];
@@ -65,14 +67,10 @@ function addPlaceTimeAjax(ddata){
                 }
                 else{
                 $("#bookInfo").empty();
-
                 $("#bookInfo").append("<p>Did you mean "+ title +
                     " by " + author + "?</p><span class='yesorno'><button class = 'yes "+
                     data[0]["pk"]+"'>Yes</button></span><span class='yesorno'><button class = 'no "+
                     data[0]["pk"]+"'>No</button></span>");
-                    //below (only 1 line) is shortenedTEST but commented!
-//                $("#bookInfo").append("Did you mean");
-
 //                $('body').on("click", ".no", function(){
 //                    $("bookInfo").empty();
 //                    for( var x =1; x<data.length; x++){
@@ -142,36 +140,6 @@ function addPlaceTimeAjax(ddata){
             }
 
         });
-//            .complete(function(data){
-//            $(".result").on("click", function() {
-//                console.log(data);
-////                console.log(title);
-//                $("#bookInfo").empty();
-//                $("#bookInfo").append("<p>Year: <input type = 'text' id='user_time'>" +
-//                    "Place: <input type = 'text' id= 'user_place'><button id='user_submit'>Submit</button></p>");
-//
-//                $("#user_submit").on("click", function(){
-//                    var user_year = $("#user_time").val();
-//                    var user_place = $("#user_place").val();
-//                    console.log(user_year);
-//                    //ifstatement here to make sure year is a number format
-//                     $.ajax({
-//                        url:/user_create_book/,
-//                        type:"POST",
-//                        data: user_data,
-//                        dataType:"json",
-//                        success:function(data){
-//
-//                        },
-//                        error: function(data){
-//
-//                        }
-//                     })
-//                })
-//            })
-//            });
-
-
         });
     });
 //    $("#addBookButton").bind('keypress', function(e){

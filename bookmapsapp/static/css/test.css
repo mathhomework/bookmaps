@@ -5,7 +5,7 @@ body {
   background-color: #3e3; }
 
 #map-canvas {
-  height: 93%;
+  height: 50%;
   width: 100%;
   bottom: 0;
   position: absolute; }

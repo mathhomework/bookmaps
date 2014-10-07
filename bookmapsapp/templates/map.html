@@ -10,6 +10,7 @@
     <script src= "{% static 'bootstrap-3.2.0-dist/js/bootstrap.js' %}"></script>
     <script type = "text/javascript" src = "{% static "js/map.js" %}"></script>
     <script type = "text/javascript" src = "{% static 'js/sidebar.js' %}"></script>
+
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTM4fGWQ4C83C3WtC6ml7kZgmRhI0wgVk">
     </script>
@@ -22,6 +23,7 @@
 {#new junk#}
 {#          <input type="text" id="addBook">#}
 {#          <button class="btn btn-default" id="addBookButton">Submit</button>#}
+{#          <span id ="bookInfo"></span>#}
 {#end new junk#}
 {#the error lies somewhere in how the bootstrap version of this new junk is written#}
           <div class="container">
@@ -33,22 +35,20 @@
                   <ul class = "nav navbar-nav navbar-left">
                     <li><a href = '#'>About</a></li>
                     <li><a href = '#'>Contact</a></li>
-
-
                   </ul>
-                  <span class = "addBookSpan">
-{#                      <form class="navbar-form">#}
-{##}
-{#                      <span class="input-group">#}
-{#                          <input type="text" style="display:inline" class = "form-control inputAB" id="addBook" placeholder = "Add a Book" >#}
-{#                          <span class="input-group-btn">#}
-{#                              <button class="btn btn-default" id="addBookButton">Submit</button>#}
-{#                          </span>#}
-{#                      </span>#}
-{#                      </form>#}
-                  </span>
+{#                  <span class = "addBookSpan">#}
+                      <span class="navbar-form navbar-left"> {# Oh my god! using the form tag somehow screws up everything by giving errno 10053 #}
+
+                          <span class="input-group">
+                              <input type="text"  class = "form-control inputAB" id="addBook" placeholder = "Add a Book" >
+                              <span class="input-group-btn">
+                                  <button class="btn btn-default" id="addBookButton">Submit</button>
+                              </span>
+                          </span>
+                      </span>
+{#                  </span>#}
                     <ul  class = "nav navbar-nav navbar-left">
-                        <li><a>BOOK</a></li>
+                        <li><a id="bookInfo">book</a></li>
                     </ul>
               </div>
           </div>
