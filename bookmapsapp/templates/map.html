@@ -38,7 +38,7 @@
                   </ul>
 {#                  <span class = "addBookSpan">#}
                       <span class="navbar-form navbar-left"> {# Oh my god! using the form tag somehow screws up everything by giving errno 10053 #}
-
+{#                        {% csrf_token %}#}
                           <span class="input-group">
                               <input type="text"  class = "form-control inputAB" id="addBook" placeholder = "Add a Book" >
                               <span class="input-group-btn">
@@ -47,8 +47,13 @@
                           </span>
                       </span>
 {#                  </span>#}
-                    <ul  class = "nav navbar-nav navbar-left">
-                        <li><a id="bookInfo">book</a></li>
+                    <div class = "navbar-form btn-group navbar-left" id="bookInfo">
+
+                    </div>
+                    <ul class = "nav navbar-nav navbar-left">
+                        <li>
+                            <p  id = "bookInfoResult" class="navbar-text"></p>
+                        </li>
                     </ul>
               </div>
           </div>

@@ -16,7 +16,7 @@
 $(document).ready(function(){
 
 function addPlaceTimeAjax(ddata){
-    console.log("HAAAAAAY");
+    console.log("Now adding place time");
      $.ajax({
         url:"/add_place_time/",
         type:"POST",
@@ -28,6 +28,7 @@ function addPlaceTimeAjax(ddata){
     $("#addBookButton").on("click", function(){
         var book = $("#addBook").val();
         $('#addBook').attr("value", "");
+
         var new_data = JSON.stringify({'book':book});
         console.log("WHOAAAAAAA");
         console.log(new_data);
@@ -50,7 +51,7 @@ function addPlaceTimeAjax(ddata){
 
                 console.log(data[0]["fields"]["title"]);
                 console.log(data[0]["fields"]);
-                if(data[0]["fields"]["time"] && data[0]["fields"]["place"]){
+                if(data[0]["fields"]["place"]){
                     //cases that fall into this conditional include new objs or old objs with full data.
                     var lat = data[0]["fields"]["place"]["lat"];
                     var lng = data[0]["fields"]["place"]["lng"];
@@ -66,11 +67,10 @@ function addPlaceTimeAjax(ddata){
                     //*****the problem here is that marker copies can be made for an already existing book
                 }
                 else{
-                $("#bookInfo").empty();
-                $("#bookInfo").append("<p>Did you mean "+ title +
-                    " by " + author + "?</p><span class='yesorno'><button class = 'yes "+
-                    data[0]["pk"]+"'>Yes</button></span><span class='yesorno'><button class = 'no "+
-                    data[0]["pk"]+"'>No</button></span>");
+                $("#bookInfo").empty().append("Did you mean "+ title +
+                    " by " + author + "? &nbsp;&nbsp;&nbsp;<span class='yesorno'><button type='button' class = 'yes btn btn-default "+
+                    data[0]["pk"]+"'>Yes</button><button type = 'button' class = 'no btn btn-default "+
+                    data[0]["pk"]+"'>No&nbsp;</button></span>");
 //                $('body').on("click", ".no", function(){
 //                    $("bookInfo").empty();
 //                    for( var x =1; x<data.length; x++){
@@ -81,19 +81,18 @@ function addPlaceTimeAjax(ddata){
                 $('body').on("click", ".yes", function(){ // actually yes.onclick works
 //                  console.log(data);
 //                  console.log(title);
-                    $("#bookInfo").empty();
-                    $("#bookInfo").append("<p>Year: </p> <input type = 'text' id='user_time'>" +
-                        "<p>Place: </p><input type = 'text' id= 'user_place'><button id='user_submit'>Submit</button>");
+                    //"for time, put this into append beginning: <p>Year: </p> <input type = 'text' id='user_time'>" +
+                    $("#bookInfo").empty().append("<span class='input-group'><input type = 'text' id= 'user_place' class = 'form-control' placeholder = 'Add Setting'><span class = 'input-group-btn'><button class = 'btn btn-default' id='user_submit'>Submit</button></span></span>");
 
                     $("#user_submit").on("click", function(){
                         //ifstatement here to make sure time is a number format
-                        var user_time = parseInt($("#user_time").val());
+//                        var user_time = parseInt($("#user_time").val());
                         var user_place = $("#user_place").val();
                         user_place = user_place.replace(/ /g,"+");
 //                        $("#user_time").attr("value", "");
 //                        $("#user_place").attr("value", "");
-                        $("#bookInfo").empty();
-                        console.log(user_time);
+//                        $("#bookInfo").empty();
+
                         $.ajax({
                             url:"https://maps.googleapis.com/maps/api/geocode/json?address="+user_place+"&key=AIzaSyDTM4fGWQ4C83C3WtC6ml7kZgmRhI0wgVk",
                             type:"GET",
@@ -109,13 +108,14 @@ function addPlaceTimeAjax(ddata){
                                 map.setCenter(newMarker.getPosition());
 
                                 map.setZoom(7);
-
+                                $("#bookInfo").empty();
+                                $("#bookInfoResult").append("Book added!");
                                 var user_geodata ={
                                     title: title,
                                     place: user_place,
                                     lat: lat,
                                     lng: lng,
-                                    time: user_time
+//                                    time: user_time
                                 };
 
                                 var user_geodata_json = JSON.stringify(user_geodata);

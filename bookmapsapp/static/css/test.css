@@ -4,6 +4,10 @@ body {
 .navbar-default {
   background-color: #3e3; }
 
+.navbar{
+    border: 0;
+}
+
 #map-canvas {
   height: 50%;
   width: 100%;

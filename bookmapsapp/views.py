@@ -65,7 +65,7 @@ def get_info_image(query, isbn):
     return {"image": image, "info": info}
 
 
-@csrf_exempt
+# @csrf_exempt
 def add_place_time(request):
     if request.method == "POST":
         data = json.loads(request.body)
@@ -75,8 +75,8 @@ def add_place_time(request):
         book = Book.objects.get(title=data["title"])
         print book
         book.place = place
-        time, time_created = Time.objects.get_or_create(time=data["time"])
-        book.time.add(time)
+        # time, time_created = Time.objects.get_or_create(time=data["time"])
+        # book.time.add(time)
         book.save()
         return HttpResponse(status=201)
 
