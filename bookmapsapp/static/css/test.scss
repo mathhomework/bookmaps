@@ -1,11 +1,13 @@
 
 $primary-color:#333;
 $navbar-color: #f1b345;
-$theme-dark: #8D5A00;
+$theme-dark: #B47609;
 $theme-light: #FFCB70;
 
 body{
   font-family: 'Nunito', sans-serif;
+  background-color: $theme-dark;
+
 }
 .navbar-inverse .navbar-nav>li>a:hover {
   color: $theme-dark;
@@ -16,7 +18,7 @@ body{
 
 
 .navbar-default{
-  background-color: $navbar-color;
+  background: linear-gradient($theme-light, $navbar-color);
 }
 
 #map-canvas {
@@ -40,17 +42,25 @@ body{
 }
 
 .modal-header{
-  background-color: $navbar-color;
+  background-color: $theme-dark;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
 
 .modal-content{
-  background-color: $theme-light;
+  background-color: $navbar-color;
 }
 
 .modal-footer{
-  background-color: $navbar-color;
+  background-color: $theme-dark;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+}
+
+.popover-title{
+  background-color:$navbar-color;
+}
+
+.popover-content{
+  background-color:$theme-light;
 }

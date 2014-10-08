@@ -1,14 +1,15 @@
 body {
-  font-family: 'Nunito', sans-serif; }
+  font-family: 'Nunito', sans-serif;
+  background-color: #B47609; }
 
 .navbar-inverse .navbar-nav > li > a:hover {
-  color: #8D5A00; }
+  color: #B47609; }
 
 .navbar-inverse .navbar-nav > li > a {
   color: #FFCB70; }
 
 .navbar-default {
-  background-color: #f1b345; }
+  background: linear-gradient(#FFCB70, #f1b345); }
 
 #map-canvas {
   height: 93%;
@@ -26,16 +27,22 @@ body {
   display: inline; }
 
 .modal-header {
-  background-color: #f1b345;
+  background-color: #B47609;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px; }
 
 .modal-content {
-  background-color: #FFCB70; }
+  background-color: #f1b345; }
 
 .modal-footer {
-  background-color: #f1b345;
+  background-color: #B47609;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px; }
+
+.popover-title {
+  background-color: #f1b345; }
+
+.popover-content {
+  background-color: #FFCB70; }
 
 /*# sourceMappingURL=test.css.map */
