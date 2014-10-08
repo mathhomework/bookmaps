@@ -123,7 +123,7 @@ except ImportError:
 
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
-DATABASES['default'] =  dj_database_url.config(default='postgres://postgres:hotdog@bookmaps')
+DATABASES['default'] =  dj_database_url.config(default='postgres://qrtoybocjglaum:TLCD73Zm2i_cYlpCTItc27LQk7@ec2-54-83-196-217.compute-1.amazonaws.com:5432/deuqan9d3m7b1f')
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
