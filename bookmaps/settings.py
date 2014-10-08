@@ -56,13 +56,27 @@ WSGI_APPLICATION = 'bookmaps.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-
+#uncomment the below when running locally
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+#ec2 heroku database GOLD
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'deuqan9d3m7b1f',
+        'PASSWORD': 'TLCD73Zm2i_cYlpCTItc27LQk7',
+        'HOST': 'ec2-54-83-196-217.compute-1.amazonaws.com',
+        'PORT': '5432',
+
+    }
+}
+
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
@@ -83,10 +97,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-try:
-    from local_settings import *
-except ImportError:
-    pass
+#uncomment the bleow when running locally
+# try:
+#     from local_settings import *
+# except ImportError:
+#     pass
 
 # # Parse database configuration from $DATABASE_URL
 # import dj_database_url

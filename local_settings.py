@@ -6,3 +6,4 @@ DATABASES = {
         'PASSWORD': 'hotdog'
     }
 }
+
