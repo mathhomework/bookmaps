@@ -15,6 +15,14 @@
 
 $(document).ready(function(){
 
+$(function(){
+    $('#contact').popover({
+        placement:'bottom',
+        title:'Contact',
+        content: 'Andrew can be reached at andrewshum@alumni.ucsd.edu'
+    });
+});
+
 function addPlaceTimeAjax(ddata){
     console.log("Now adding place time");
      $.ajax({
@@ -69,8 +77,10 @@ function addPlaceTimeAjax(ddata){
                 else{
                 $("#bookInfo").empty().append("Did you mean "+ title +
                     " by " + author + "? &nbsp;&nbsp;&nbsp;<span class='yesorno'><button type='button' class = 'yes btn btn-default "+
-                    data[0]["pk"]+"'>Yes</button><button type = 'button' class = 'no btn btn-default "+
-                    data[0]["pk"]+"'>No&nbsp;</button></span>");
+                    data[0]["pk"]+"'>Yes</button>");
+                    //copy and paste right after Yes</button>the below for no feature.
+                    //<button type = 'button' class = 'no btn btn-default "+
+                    //data[0]["pk"]+"'>No&nbsp;</button></span>
 //                $('body').on("click", ".no", function(){
 //                    $("bookInfo").empty();
 //                    for( var x =1; x<data.length; x++){

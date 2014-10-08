@@ -22,6 +22,14 @@ var previousMarker;
 var sessionData = {};
 
 
+//$(window).resize(function () {
+//    var h = $(window).height(),
+//        offsetTop = 1; // Calculate the top offset
+//
+//    $('#map-canvas').css('height', (h - offsetTop));
+//}).resize();
+
+
 function toggleBounce(marker){
     if (marker.getAnimation() != null){
         marker.setAnimation(null);

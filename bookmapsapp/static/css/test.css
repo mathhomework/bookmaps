@@ -2,16 +2,21 @@ body {
   color: #333; }
 
 .navbar-default {
-  background-color: #3e3; }
-
-.navbar{
-    border: 0;
-}
+  background-color: #f1b345; }
 
 #map-canvas {
-  height: 50%;
+  height: 93%;
   width: 100%;
   bottom: 0;
   position: absolute; }
+
+.cover img {
+  display: inline;
+  float: left;
+  margin-right: 15px;
+  margin-bottom: 15px; }
+
+.cover p {
+  display: inline; }
 
 /*# sourceMappingURL=test.css.map */
