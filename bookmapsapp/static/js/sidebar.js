@@ -47,6 +47,7 @@ function addPlaceTimeAjax(ddata){
             dataType:"json",
             timeout: 20000,
             success: function(data){
+                $("#bookInfoResult").empty();
                 console.log("ADD_BOOK SUCCESS FUNCTION BEGINS");
                 //data returned should have an object with everything but image and info populated,
                 //everything populated, or nothing populated at all.
@@ -71,7 +72,7 @@ function addPlaceTimeAjax(ddata){
                     console.log("SKSSKSKS");
                     $("#bookInfo").empty();
                     console.log("KSKSKSKSKS");
-                    $("#bookInfo").append("<p>"+title + " by " + author + " added!</p>");
+                    $("#bookInfoResult").append("<p>"+title + " by " + author + " is located right here!</p>");
                     //*****the problem here is that marker copies can be made for an already existing book
                 }
                 else{

@@ -1,11 +1,18 @@
-//$font-stack: Arial, sans-serif;
+
 $primary-color:#333;
 $navbar-color: #f1b345;
+$theme-dark: #8D5A00;
+$theme-light: #FFCB70;
 
 body{
-  color: $primary-color;
+  font-family: 'Nunito', sans-serif;
 }
-
+.navbar-inverse .navbar-nav>li>a:hover {
+  color: $theme-dark;
+}
+.navbar-inverse .navbar-nav>li>a {
+  color: $theme-light;
+}
 
 
 .navbar-default{
@@ -30,4 +37,20 @@ body{
 
 .cover p{
     display:inline;
+}
+
+.modal-header{
+  background-color: $navbar-color;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.modal-content{
+  background-color: $theme-light;
+}
+
+.modal-footer{
+  background-color: $navbar-color;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }

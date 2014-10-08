@@ -65,7 +65,7 @@ def get_info_image(query, isbn):
     return {"image": image, "info": info}
 
 
-# @csrf_exempt
+@csrf_exempt
 def add_place_time(request):
     if request.method == "POST":
         data = json.loads(request.body)

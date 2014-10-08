@@ -1,5 +1,11 @@
 body {
-  color: #333; }
+  font-family: 'Nunito', sans-serif; }
+
+.navbar-inverse .navbar-nav > li > a:hover {
+  color: #8D5A00; }
+
+.navbar-inverse .navbar-nav > li > a {
+  color: #FFCB70; }
 
 .navbar-default {
   background-color: #f1b345; }
@@ -18,5 +24,18 @@ body {
 
 .cover p {
   display: inline; }
+
+.modal-header {
+  background-color: #f1b345;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px; }
+
+.modal-content {
+  background-color: #FFCB70; }
+
+.modal-footer {
+  background-color: #f1b345;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px; }
 
 /*# sourceMappingURL=test.css.map */
